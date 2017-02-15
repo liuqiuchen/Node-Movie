@@ -52,31 +52,43 @@ app.get('/', (req, res) => {
 
 // detail 详情页
 app.get('/movie/:id', (req, res) => {
-    res.render('detail', {
-        title: 'detail 详情页',
-        movies: [
-            /*{
-                flash: 'http://player.yinyuetai.com/video/player/2740090/v_0.swf',
-                title: '你的名字',
-                doctor: '新海诚',
-                country: '日本',
-                language: '日语',
-                year: '2016年',
-                summary: '连续好几天去影院看了5遍,想想都有点疯,画面好看,歌好听,剧情感动. 完美完美.打算还想去看一遍.台州还有人吗?'
-            },*/
-            {
-                flash: 'http://player.yinyuetai.com/video/player/2769096/v_0.swf',
-                title: '风夏',
-                doctor: '濑尾公治',
-                country: '日本',
-                language: '日语',
-                year: '2017年',
-                summary: '刚搬到东京来和三个姐妹一起生活的榛名优，是个性格内向消极、整天拿著手机不放的高中生。' +
-                '视手机如命的他因为种种意外而认识了个性活泼却有点古怪，而且居然没有手机的少女·秋月风夏。而另一方面，优在推特上与自己的儿时玩伴·当红歌手冰无小雪联系上了。小雪邀请优前来欣赏自己的演唱会，' +
-                '但是优却早已跟风夏约好要出去了。两女一男的三角关系，就此开始。'
-            }
-        ]
+    // 拿到url上的那个id参数值
+    let id = req.params.id;
+    Movie.findById(id, (err, movie) => {
+        if(err) {
+            console.log(err);
+        }
+        res.render('detail', {
+            title: 'detail 详情页',
+            movie: movie
+        });
     });
+
+    // res.render('detail', {
+    //     title: 'detail 详情页',
+    //     movies: [
+    //         /*{
+    //             flash: 'http://player.yinyuetai.com/video/player/2740090/v_0.swf',
+    //             title: '你的名字',
+    //             doctor: '新海诚',
+    //             country: '日本',
+    //             language: '日语',
+    //             year: '2016年',
+    //             summary: '连续好几天去影院看了5遍,想想都有点疯,画面好看,歌好听,剧情感动. 完美完美.打算还想去看一遍.台州还有人吗?'
+    //         },*/
+    //         {
+    //             flash: 'http://player.yinyuetai.com/video/player/2769096/v_0.swf',
+    //             title: '风夏',
+    //             doctor: '濑尾公治',
+    //             country: '日本',
+    //             language: '日语',
+    //             year: '2017年',
+    //             summary: '刚搬到东京来和三个姐妹一起生活的榛名优，是个性格内向消极、整天拿著手机不放的高中生。' +
+    //             '视手机如命的他因为种种意外而认识了个性活泼却有点古怪，而且居然没有手机的少女·秋月风夏。而另一方面，优在推特上与自己的儿时玩伴·当红歌手冰无小雪联系上了。小雪邀请优前来欣赏自己的演唱会，' +
+    //             '但是优却早已跟风夏约好要出去了。两女一男的三角关系，就此开始。'
+    //         }
+    //     ]
+    // });
 });
 
 // admin 后台录入页
