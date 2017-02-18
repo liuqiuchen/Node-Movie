@@ -6,8 +6,8 @@ block content
             each item in movies
                 .col-md-4
                     .thumbnail
-                        a(href="/movie/#{item.id}")
+                        a(href="/movie/#{item.id}",target="_blank")
                             div(style="width:100%;height:20rem;background:url('#{item.poster}') no-repeat center center;background-size:contain;")
                         .caption
                             h3 #{item.title}
-                            p: a.btn.btn-primary(href="/movie/#{item.id}", role="button") 观看预告片
+                            p: a.btn.btn-primary(href="/movie/#{item.id}", role="button",target="_blank") 观看预告片

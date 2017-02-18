@@ -23,11 +23,11 @@ let MovieSchema = new mongoose.Schema({
 
 // 每次在存储数据之前都会调用这个方法
 MovieSchema.pre('save', (next) => {
-    if(this.isNew) {
+    /*if(this.isNew) {
         this.meta.createAt = this.meta.updateAt = Date.now();
     } else {
         this.meta.updateAt = Date.now();
-    }
+    }*/
     next();
 });
 
