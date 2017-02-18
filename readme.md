@@ -10,4 +10,6 @@ __设计数据库模型__
 - Model(模型)
 - Documents(文档)
 
+__/db存放数据库文件，放在你本地的data目录下，用mongoVue查看__
+
 - [localhost:3000/admin/movie] 进入新增影视界面，新增之后会跳到详情页
