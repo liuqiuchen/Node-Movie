@@ -19,3 +19,7 @@ __/db存放数据库文件，放在你本地的data目录下，用mongoVue查看
 `.bowerrc`指定bower安装到哪个目录中去
 
 __页面展示__
+![github](https://github.com/liuqiuchen/Node-Movie/tree/master/showImg/s01.png)
+![github](https://github.com/liuqiuchen/Node-Movie/tree/master/showImg/s02.png)
+![github](https://github.com/liuqiuchen/Node-Movie/tree/master/showImg/s03.png)
+![github](https://github.com/liuqiuchen/Node-Movie/tree/master/showImg/s04.png)
