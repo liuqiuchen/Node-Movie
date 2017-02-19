@@ -13,6 +13,9 @@ mongoose.connect('mongodb://localhost/imooc');
 let app = express();
 let port = process.env.PORT || 3000;
 
+// 时间格式化
+app.locals.moment = require('moment');
+
 app.set('view engine', 'jade');
 app.set('views', './views/pages');
 app.set('port', 3000);
@@ -59,8 +62,8 @@ app.get('/movie/:id', (req, res) => {
             console.log(err);
         }
         res.render('detail', {
-            title: '详情页 - ' + movie.title,
-            movie: movie
+            movie: movie,
+            title: '详情页'
         });
     });
 });
@@ -83,10 +86,50 @@ app.get('/admin/movie', (req, res) => {
     });
 });
 
+// 修改电影
+// admin update movie
+app.get('/admin/update/:id', (req, res) => {
+    let id = req.params.id;
+
+    if(id) {
+        Movie.findById(id, (err, movie) => {
+            if(err) {
+                console.log(err);
+            } else {
+                res.render('admin', {
+                    title: '后台更新',
+                    movie: movie
+                });
+            }
+        })
+    }
+});
+
 // admin post movie
 app.post('/admin/movie/new', (req, res) => {
     let movieObj = req.body.movie;
 
+    // 修改
+    if(movieObj._id) {
+        Movie.findById(movieObj._id, (err, movie) => {
+            if(err) {
+                console.log(err);
+            } else {
+                // 把新的替换掉老的
+                let _movie = _.extend(movie, movieObj);
+                _movie.save((err, movie) => {
+                    if(err) {
+                        console.log(err);
+                    }
+
+                    res.redirect('/movie/' + movie._id);
+                });
+            }
+        });
+        return;
+    }
+
+    // 新增
     let _movie = new Movie({
         doctor: movieObj.doctor,
         title: movieObj.title,
@@ -102,17 +145,27 @@ app.post('/admin/movie/new', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            console.log(movie);
+            //console.log(movie);
+            res.redirect('/movie/' + movie._id);
         }
-
-        res.redirect('/movie/' + movie._id);
     });
 
 });
 
 // list 目录页
 app.get('/list', (req, res) => {
-    res.render('list', {title: 'list 目录页'});
+    Movie.fetch((err, movies) => {
+        if(err) {
+            console.log(err);
+        } else {
+            res.render('list',
+            {
+                title: 'list 目录页',
+                movies: movies
+            });
+        }
+    });
+
 });
 
 console.log('Imooc started on port ' + port);
