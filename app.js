@@ -21,7 +21,7 @@ app.set('views', './views/pages');
 app.set('port', 3000);
 app.listen(port);
 
-app.use(serveStatic(path.join(__dirname, 'bower_components')));
+app.use(serveStatic(path.join(__dirname, 'public')));
 
 // 解析表单数据，可以用req.body.movie访问数据
 app.use(bodyParser.urlencoded({extended: true}));
