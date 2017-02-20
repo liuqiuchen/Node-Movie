@@ -23,3 +23,8 @@ __页面展示__
 ![image](https://raw.githubusercontent.com/liuqiuchen/Node-Movie/master/showImg/s02.png)
 ![image](https://raw.githubusercontent.com/liuqiuchen/Node-Movie/master/showImg/s03.png)
 ![image](https://raw.githubusercontent.com/liuqiuchen/Node-Movie/master/showImg/s04.png)
+
+__数据库展示__
+![image](https://raw.githubusercontent.com/liuqiuchen/Node-Movie/master/showImg/s05.png)
+
+- `public/js/admin.js`执行列表删除逻辑，还有相对应的路由配置

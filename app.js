@@ -168,4 +168,51 @@ app.get('/list', (req, res) => {
 
 });
 
+// list delete movie
+app.delete('/admin/list', (req, res) => {
+    let id = req.query.id;
+
+    if(id) {
+        Movie.remove({_id: id}, (err, movie) => {
+            if(err) {
+                console.log(err);
+            } else {
+                res.json({success: 1});
+            }
+        })
+    }
+});
+
 console.log('Imooc started on port ' + port);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
